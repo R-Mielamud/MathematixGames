@@ -1,0 +1,342 @@
+<html lang="en">
+    <head>
+        <!--windows + r-->
+        <!--cd C:\Users\moyo1\Desktop\JAVASCRIPT\MathsmatixGames-->
+        <!--git add .-->
+        <!--git commit -m "init commit"-->
+        <!--git push origin master-->
+        <!--cls-->
+        <link rel="shortcut icon" href="title_img.png" type="image/png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <title>GAMES</title>
+        <link rel="stylesheet" href="gamescss.css">
+    </head>
+    
+    <body>
+        <div id="m-bg">
+            <div id="m-win">
+                <h1>Loading</h1>
+            </div>
+        </div>
+        
+        <nav>
+            <ol>
+                <li><a href="#g1">Крестики-нолики</a></li>
+                <li><a href="#g2">Досчитай до 100</a></li>
+                <li><a href="#g3">Камень-ножницы-бумага</a></li>
+                <li><a href="#g4">Игра с кучкой камушков</a></li>
+                <li><a href="#g5">Быки и коровы</a></li>
+                <li><a href="#g6">Таблица Шульте</a></li>
+                <li><a href="#g7">День рождения</a></li>
+            </ol>
+        </nav>
+
+        <div id="block">
+            <canvas id="can"></canvas>
+            <p id="par">Введите третью степень числа два и нажмите enter.</p>
+            <input onkeypress="charBool(event)" class="onkey" type="text" id="input1">
+        </div>
+        
+        <header>
+            <div id="none1">
+                <h1>МАТЕМАТИЧЕСКИЕ ИГРЫ</h1>
+                
+                <div class="cont">
+                    <img src="http://pngimg.com/uploads/question_mark/question_mark_PNG140.png" id="q">
+                    <span id="small">правила</span>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div id="none2">
+                <div class="underheader">Два игрока</div>
+                
+                <div class="b-red">
+                    <h2 id="g1">Крестики-нолики</h2>
+                    <div class="black">
+                        <div class="container">
+                            <div class="el" onclick="game1()">
+                                <div class="green1" id="11"></div>
+                                <div class="red1" id="12">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game2()">
+                                <div class="green2" id="21"></div>
+                                <div class="red2" id="22">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game3()">
+                                <div class="green3" id="31"></div>
+                                <div class="red3" id="32">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game4()">
+                                <div class="green4" id="41"></div>
+                                <div class="red4" id="42">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game5()">
+                                <div class="green5" id="51"></div>
+                                <div class="red5" id="52">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game6()">
+                                <div class="green6" id="61"></div>
+                                <div class="red6" id="62">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game7()">
+                                <div class="green7" id="71"></div>
+                                <div class="red7" id="72">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game8()">
+                                <div class="green8" id="81"></div>
+                                <div class="red8" id="82">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+
+                            <div class="el" onclick="game9()">
+                                <div class="green9" id="91"></div>
+                                <div class="red9" id="92">
+                                    <div class="red-in1"></div>
+                                    <div class="red-in2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="Again1()">Заново</button>
+
+                    <p>Хотите сыграть в крестики-нолики 4x4 или больше? Эта ссылка для вас! 
+                        <button id="inter">Интерактивные Крестики-Нолики</button>
+                    </p>
+                </div>
+                
+                <div class="b-orange">
+                    <h2 id="g2">Досчитай до 100</h2>
+                    
+                    <form>
+                        <input type="text" id="1a" onfocus="foc1()" autocomplete="off">
+                        <input type="text" id="20" disabled autocomplete="off">
+                    </form>
+
+                    <button onclick="sum()">OK</button>
+                    <button onclick="Again2()">Заново</button>
+                </div>
+
+                <div class="underheader">С компьютером</div>
+                
+                <div class="b-yellow">
+                    <h2 id="g3">Камень-ножницы-бумага</h2>
+
+                    <div class="outcontainer">
+                        Вы:
+                        <div class="incontainer">
+                            <button class="gamebutton" id="1331" onclick="gameN3$1331()">Камень</button>
+                            <button class="gamebutton" id="1332" onclick="gameN3$1332()">Ножницы</button>
+                            <button class="gamebutton" id="1333" onclick="gameN3$1333()">Бумага</button>
+                        </div>
+
+                        Компьютер:
+                        <div class="incontainer">
+                            <button class="gamebutton" id="2331">Камень</button>
+                            <button class="gamebutton" id="2332">Ножницы</button>
+                            <button class="gamebutton" id="2333">Бумага</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="b-green" id="bg">
+                    <h2 id="g4">Игра с кучкой камушков</h2>
+                    
+                    <button onclick="gamen4start()" id="startbutton">Начать</button>
+
+                    <form>
+                        <input value="Введите количество камушков от 4 до 10" type="text" id="count" onfocus="foc()" autocomplete="off">
+                    </form>
+
+                    <div id="gamen4start">
+                        <div class="vcontainer">
+                            <div id="div1" onclick="f2()"></div>
+                            <canvas id="canvas1" onclick="f2()">Ошибка.</canvas>
+                            <button id="stopstep" onclick="f1()">ОК</button>
+                        </div>
+                    </div>
+                    
+                    <div id="d1"></div>
+                    <div id="d2"></div>
+                </div>
+                
+                <div class="b-aqua">
+                    <h2 id="g5">Быки и коровы</h2>
+                    <button onclick="cowsGame()" id="cowbutton">Начать</button>
+                    <input placeholder="число" id="gray">
+                    <div id="numbersView"></div>
+                    <button onclick="cowOK()" id="OKbutton">OK</button>
+                    <button onclick="cowReset()" id="resetcowbutton">Сброс</button>
+                </div>
+                
+                <div class="underheader">Один игрок</div>
+                
+                <div class="b-blue">
+                    <h2 id="g6">Таблица Шульте</h2>
+                    <button onclick="netGame()" id="startbutton2">Начать</button>
+                    <div id="net"></div>
+                    <div id="timeCounter"></div>
+                    <div id="next"></div>
+                    <button onclick="reset()" id="resetbutton">Сброс</button>
+                    
+                </div>
+
+                <div class="underheader">Математический фокус</div>
+                
+                <div class="b-purple">
+                    <h2 id="g7">День рождения</h2>
+                    <button onclick="gamen6start()" id="startbutton3">Начать</button>
+
+                    <div id="o1">Умножте на 2 число дня своего рождения.</div>
+                    <button onclick="g62()" id="o11">OK</button>
+
+                    <div id="o2">Сложите получившееся произведение и число 5.</div>
+                    <button onclick="g63()" id="o22">OK</button>
+
+                    <div id="o3">Умножте на 50 полученную сумму.</div>
+                    <button onclick="g64()" id="o33">OK</button>
+
+                    <div id="o4">Прибавте номер месяца рождения &#40;май - 5, январь - 1&#41;.</div>
+
+                    <form>
+                        <input placeholder="Результат" id="oi" autocomplete="off">
+                    </form>
+
+                    <button onclick="g65()" id="o44">OK</button>
+
+                    <p>Может захотелось примеры с дробями порешать? Если да, то эта ссылка для вас!
+                        <button id="inter2">Калькулятор Для Дробей</button>
+                    </p>
+                </div>
+            </div>
+        </main>
+          
+        <footer>
+            <div id="none3">
+                <form>
+                    <input type="text" id="date" disabled autocomplete="off">
+                </form>
+
+                <h3 id="h3"></h3>
+                
+                <button id="abc">Написать нам</button>
+                
+                <form id="mail-form">
+                    <input type="text" placeholder="Введите логин." id="in10" autocomplete="off">
+                    <textarea placeholder="Введите текст сообщения." id="in11"></textarea>
+                </form>
+
+                <button id="send">Отправить</button>
+                <button id="canc">Отмена</button>
+                <button onclick="scrollToTop()" id="toTop">Наверх</button>
+            </div>
+            
+            <script src="move.js" type="text/javascript" async></script>
+            <script src="gamesjs.js" type="text/javascript" async></script>
+            
+            <script type="text/javascript" async>
+                setInterval(() => {
+                    var numb = 0;
+                    
+                    for (var a of gameChecker) {
+                        numb += a;
+                    }
+                    
+                    if (numb == (1 + 2 + 3 + 4 + 5 + 6 + 7)) {
+                        dGetId("h3").innerHTML = "Пока!";
+                    } else {
+                        dGetId("h3").innerHTML = "Вы ещё поиграли не во все игры!";
+                    }
+                }, 450);
+            </script>
+            
+            <script type="text/javascript" async>
+                var dateFull = new Date(); 
+                var dateFullModern;
+                var second;
+                var minute;
+                var year;
+                var month;
+                var day;
+                var hour;
+
+                setInterval(() => {
+                    dateFull = new Date();
+                    year = dateFull.getFullYear();
+                    month = dateFull.getMonth() + 1;
+                    day = dateFull.getDate();
+                    hour = dateFull.getHours();
+                    minute = dateFull.getMinutes();
+                    second = dateFull.getSeconds();
+                    
+                    month = String(month);
+                    
+                    if (month.length < 2) {
+                        month = "0" + month;
+                    }
+                    
+                    day = String(day);
+                    
+                    if (day.length < 2) {
+                        day = "0" + day;
+                    }
+                    
+                    hour = String(hour);
+                    
+                    if (hour.length < 2) {
+                        hour = "0" + hour;
+                    }
+                    
+                    minute = String(minute);
+                    
+                    if (minute.length < 2) {
+                        minute = "0" + minute;
+                    }
+                    
+                    second = String(second);
+                    
+                    if (second.length < 2) {
+                        second = "0" + second;
+                    }
+                    
+                    dateFullModern = `Точная дата: ${day}.${month}.${year} ${hour}:${minute}:${second}`;
+                    document.getElementById("date").value = dateFullModern;
+                }, 500);
+            </script>
+        </footer>
+    </body>
+</html>

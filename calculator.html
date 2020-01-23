@@ -1,0 +1,246 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>CALCULATOR</title>
+        <link rel="shortcut icon" href="title_img.png" type="image/png">
+
+        <style>
+            input {
+                display: block;
+                width: 100%;
+                height: 25px;
+                font-size: 0.8em;
+            }
+
+            .form {
+                display: flex;
+                width: 20%;
+                justify-content: space-between;
+                font-size: 2em;
+            }
+
+            #zn, .equal-zn {
+                align-self: center;
+            }
+
+            body {
+                background-image: linear-gradient(to bottom left, red, orange, yellow, #005500, blue, violet);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            } 
+
+            #okay {
+                width: 5%;
+                background-color: yellow;
+                margin-top: 10px;
+            }
+
+            .cont {
+                width: 20%;
+            }
+
+            #zn {
+                width: 10%;
+            }
+
+            input[disabled] {
+                background-color: black;
+                color: white;
+            }
+
+            button[onclick="window.close();"] {
+                width: 5%;
+                height: 30px;
+                transform: translateY(1000%) translateX(-14%);
+                background-color: yellow;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="form">
+            <div class="cont">
+                <input id="ch1">
+                <input id="z1">
+            </div>
+
+            <input id="zn">
+
+            <div class="cont">
+                <input id="ch2">
+                <input id="z2">
+            </div>
+
+            <b class="equal-zn">=</b>
+
+            <div class="cont">
+                <input id="rch" disabled>
+                <input id="rz" disabled>
+            </div>
+        </div>
+
+        <button id="okay">OK</button>
+        <button onclick="window.close();">Назад</button>
+
+        <script type="text/javascript" async>
+            var dGetId = function(id) {
+                return document.getElementById(id);
+            }
+
+            dGetId("ch1").focus();
+            dGetId("ch1").onkeypress = function(event) {
+                if (event.charCode === 13) {
+                    dGetId("z1").focus();
+                }
+            }
+
+            dGetId("z1").onkeypress = function(event) {
+                if (event.charCode === 13) {
+                    dGetId("zn").focus();
+                }
+            }
+
+            dGetId("zn").onkeypress = function(event) {
+                if (event.charCode === 13) {
+                    dGetId("ch2").focus();
+                }
+            }
+
+            dGetId("ch2").onkeypress = function(event) {
+                if (event.charCode === 13) {
+                    dGetId("z2").focus();
+                }
+            }
+
+            var checkMin = function(ch, z) {
+                var chD = [];
+                var zD = [];
+                var equals = [];
+                var ans = {};
+                if (ch === 1 || z === 1) {ans.ch = ch; ans.z = z; return ans;};
+                for (var i = 2; i <= ch; i++) if (ch % i === 0) chD.push(i); 
+                for (var i = 2; i <= z; i++) if (z % i === 0) zD.push(i); 
+                for (var i of chD) for (var j of zD) if (i === j) equals.push(i);
+                if (equals.length > 1) var equalMax = Math.max.apply(Math, equals);
+                else if (equals.length === 1) var equalMax = equals[0];
+
+                else {
+                    ans.ch = ch;
+                    ans.z = z;
+                    return ans;
+                }
+
+                ans.ch = ch / equalMax;
+                ans.z = z / equalMax;
+                return ans;
+            }
+
+            dGetId("okay").onclick = function() {
+                var zn = dGetId("zn").value;
+                var ch1 = +dGetId("ch1").value;
+                var ch2 = +dGetId("ch2").value;
+                var z1 = +dGetId("z1").value;
+                var z2 = +dGetId("z2").value;
+
+                if (!zn || !z1 || !z2 || !ch1 || !ch2) {
+                    alert("Не оставляйте поля пустыми, не вводите 0 или некорректные знаки!");
+                    return;
+                }
+            
+                if (zn === "+") {
+                    if (z1 !== z2 && (z1 % z2 === 0 || z2 % z1 === 0)) {
+                        if (z1 % z2 === 0) {
+                            ch2 *= z1 / z2;
+                            z2 *= z1 / z2;
+                        } else {
+                            ch1 *= z2 / z1;
+                            z1 *= z2 / z1;
+                        }
+                    } else if (z1 !== z2 && (z1 % z2 !== 0 || z2 % z1 !== 0)) {
+                        var z = z1 * z2;
+                        ch1 *= z2;
+                        ch2 *= z1;
+                        z1 = z;
+                        z2 = z;
+                    }
+
+                    dGetId("rch").value = checkMin(ch1 + ch2, z1).ch;
+                    dGetId("rz").value = checkMin(ch1 + ch2, z1).z;
+                    
+                    setTimeout(() => {
+                        dGetId("zn").value = "";
+                        dGetId("ch1").value = "";
+                        dGetId("ch2").value = "";
+                        dGetId("z1").value = "";
+                        dGetId("z2").value = "";
+                        dGetId("rz").value = "";
+                        dGetId("rch").value = "";
+                        dGetId("ch1").focus();
+                    }, 2500);
+                } else if (zn === "-") {
+                    if (z1 !== z2 && (z1 % z2 === 0 || z2 % z1 === 0)) {
+                        if (z1 % z2 === 0) {
+                            ch2 *= z1 / z2;
+                            z2 *= z1 / z2;
+                        } else {
+                            ch1 *= z2 / z1;
+                            z1 *= z2 / z1;
+                        }
+                    } else if (z1 !== z2 && (z1 % z2 !== 0 || z2 % z1 !== 0)) {
+                        var z = z1 * z2;
+                        ch1 *= z2;
+                        ch2 *= z1;
+                        z1 = z;
+                        z2 = z;
+                    }
+
+                    dGetId("rch").value = checkMin(ch1 - ch2, z1).ch;
+                    dGetId("rz").value = checkMin(ch1 - ch2, z1).z;
+
+                    setTimeout(() => {
+                        dGetId("zn").value = "";
+                        dGetId("ch1").value = "";
+                        dGetId("ch2").value = "";
+                        dGetId("z1").value = "";
+                        dGetId("z2").value = "";
+                        dGetId("rz").value = "";
+                        dGetId("rch").value = "";
+                        dGetId("ch1").focus();
+                    }, 2500);
+                } else if (zn === "*") {
+                    dGetId("rch").value = checkMin(ch1 * ch2, z1 * z2).ch;
+                    dGetId("rz").value = checkMin(ch1 * ch2, z1 * z2).z;
+                    
+                    setTimeout(() => {
+                        dGetId("zn").value = "";
+                        dGetId("ch1").value = "";
+                        dGetId("ch2").value = "";
+                        dGetId("z1").value = "";
+                        dGetId("z2").value = "";
+                        dGetId("rz").value = "";
+                        dGetId("rch").value = "";
+                        dGetId("ch1").focus();
+                    }, 2500);
+                } else if (zn === "/") {
+                    dGetId("rch").value = checkMin(ch1 * z2, z1 * ch2).ch;
+                    dGetId("rz").value = checkMin(ch1 * z2, z1 * ch2).z;
+                    
+                    setTimeout(() => {
+                        dGetId("zn").value = "";
+                        dGetId("ch1").value = "";
+                        dGetId("ch2").value = "";
+                        dGetId("z1").value = "";
+                        dGetId("z2").value = "";
+                        dGetId("rz").value = "";
+                        dGetId("rch").value = "";
+                        dGetId("ch1").focus();
+                    }, 2500);
+                }
+            }
+        </script>
+    </body>
+</html>
